@@ -1,4 +1,5 @@
-//h2 접근법 javaw -ajr h2-2.1.210.jar
+//h2 접근법  javaw -jar h2-2.1.210.jar
+
 
 drop table if exists member CASCADE;
 create table member
