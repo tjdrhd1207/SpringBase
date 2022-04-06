@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="../static/css/createMemberForm.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -18,9 +19,14 @@
 
 
 <div id="header">
+    <a title="네이버 회원가입 페이지 보러가기"></a>
+</div>
+
     <div id="wrapper">
+
       <div id="content">
-        <div>
+          <!--ID-->
+          <div>
             <h3>
                <label for="id">아이디</label>
             </h3>
@@ -29,12 +35,94 @@
                 <span class="step_url">@naver.com</span>
             </span>
             <span class="error_next_box"></span>
-        </div>
+          </div>
+          <!--PWD-->
+          <div>
+              <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
+              <span class="box int_pass">
+                <input type="text" id="pswd1" class="int" maxlength="20">
+                <span id="alertTxt">사용불가</span>
+                <img>
+            </span>
+              <span class="error_next_box"></span>
+          </div>
+
+          <!--pw2-->
+          <div>
+              <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
+              <span class="box int_pass_check">
+                <input type="text" id="pswd2" class="int" maxlength="20">
+                <img>
+              </span>
+              <span class="error_next_box"></span>
+          </div>
+
+          <!--NAME-->
+          <div>
+              <h3 class="join_title"><label for="userName">이름</label></h3>
+              <span class="box int_name">
+                <input type="text" id="userName" class="int" maxlength="20">
+              </span>
+          </div>
+
+
+
       </div>
+
     </div>
+
+
+
+<!-- 생년월인-->
+<div>
+    <h3><label for="yy">생년월일</label></h3>
+
+    <div id="bir_wrap">
+
+        <!--생년월일_YY-->
+        <div id="bir_yy">
+            <span class="box">
+                <input type="text" id="yy" class="int" maxlength="4" placeholder="년(4자)">
+            </span>
+        </div>
+
+        <!--생년월일_MM-->
+        <div id="bir_mm">
+            <span class="box">
+                <select id="mm">
+                    <option>월</option>
+                    <option value="01">1</option>
+                    <option value="02">2</option>
+                    <option value="03">3</option>
+                    <option value="04">4</option>
+                    <option value="05">5</option>
+                    <option value="06">6</option>
+                    <option value="07">7</option>
+                    <option value="08">8</option>
+                    <option value="09">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </span>
+        </div>
+
+        <!--생년월일_DD-->
+        <div id="bir_dd">
+            <span class="box">
+                <input type="text" id="dd" class="int" maxlength="2" placeholder="일">
+            </span>
+        </div>
+    </div>
+    <span class="error_next_box"></span>
 </div>
 
-
+<!--가입하기 버튼-->
+<div class="btn_area">
+    <button type="button">
+       <span>가입하기</span>
+    </button>
+</div>
 
 </body>
 </html>
