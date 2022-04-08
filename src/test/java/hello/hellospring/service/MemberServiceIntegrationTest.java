@@ -7,12 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 @SpringBootTest
 @Transactional
@@ -30,7 +32,7 @@ class MemberServiceIntegrationTest {
     void 회원가입() {
         //given
         Member member = new Member();
-        member.setName("spring");
+        member.setName("spring123");
 
         //when
         Long saveId = memberService.join(member);
@@ -56,7 +58,7 @@ class MemberServiceIntegrationTest {
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
 
     }
-    @Test
+ /*   @Test
     public void 회원조회(){
 
         Optional<String> member1 = memberService.findOne(Long.valueOf(22)).map(Member::getName);
@@ -64,6 +66,6 @@ class MemberServiceIntegrationTest {
 
 
         System.out.println("name"+member1);
-    }
+    }*/
 
 }
