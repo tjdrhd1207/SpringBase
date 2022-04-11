@@ -34,6 +34,13 @@ body{
     width : 460px;
 }
 
+/*폼 관련*/
+
+input:focus {
+    outline: none;
+}
+
+
 h3{
     margin : 19px 0 8px;
     font-size : 14px;
@@ -65,15 +72,15 @@ input{
     font-family : Dotum, '돋움', Helvetica, sans-serif;
 }
 
-.box.int_id{
+.box int_id{
     padding-right : 1100px;
 }
 
-.box.int_pass{
+.box int_pass{
     padding-right : 40px;
 }
 
-.box.int_pass_check{
+.box int_pass_check{
     padding-right : 40px;
 }
 
@@ -138,6 +145,13 @@ select{
     font-family:Dotum,;'돋움', Helvetica, sans-serif
 }
 
+.error_next_box {
+    margin-top: 9px;
+    font-size: 12px;
+    color: red;
+    display: none;
+}
+
 #alertTxt{
     position : absolute;
     top : 19px;
@@ -160,4 +174,5 @@ select{
     font-size: 20px;
     font-weight: 400;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
+    color:white;
 }
