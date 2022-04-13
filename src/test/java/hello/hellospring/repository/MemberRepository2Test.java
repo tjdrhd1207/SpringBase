@@ -3,8 +3,7 @@ package hello.hellospring.repository;
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.memberUser;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,7 +37,7 @@ public class MemberRepository2Test {
 
 
      }
-     @Test
+  /*   @Test
      public void testUser() throws  Exception{
          //given
          memberUser user = new memberUser();
@@ -46,11 +45,11 @@ public class MemberRepository2Test {
 
          //when
          Long saveId = memberRepository2.save(user);
-         //User findUser = memberRepository2.findUser(saveId);
+         memberUser findUser = memberRepository2.findUser(saveId);
 
          //then
-         //Assertions.assertThat(findUser.getId()).isEqualTo(user.getId());
-         //Assertions.assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
+         Assertions.assertThat(findUser.getId()).isEqualTo(user.getId());
+         Assertions.assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
      }
-
+*/
 }
