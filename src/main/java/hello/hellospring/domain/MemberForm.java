@@ -1,5 +1,8 @@
-package hello.hellospring.controller;
+package hello.hellospring.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class MemberForm {
     private String name;
 
