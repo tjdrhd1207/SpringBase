@@ -1,5 +1,6 @@
 package hello.hellospring.domain.item;
 
+import hello.hellospring.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "dtype")
-@Getter @Setter
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)   //상속관계 매핑
+@DiscriminatorColumn(name = "dtype")                    //부모클래스에 선언. 하위 클래스를 구분하는 용도의 컬럼. 관례는 default = dtype
+@Getter
 public abstract class Item {
 
     @Id
@@ -24,4 +25,25 @@ public abstract class Item {
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
+
+
+    //===비즈니스 로직=//
+    /*
+    * stock 증가
+    * */
+    public void addStock(int quantity){
+        this.stockQuantity += quantity;
+    }
+
+    /*
+    * stock 감소
+    * */
+    public void removeStock(int quantity){
+        int restStock = this.stockQuantity - quantity;
+        if(restStock < 0){
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.stockQuantity = restStock;
+    }
+
 }
