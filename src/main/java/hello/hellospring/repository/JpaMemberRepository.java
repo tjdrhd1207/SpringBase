@@ -1,6 +1,7 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.domain.MemberForm;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -18,6 +19,12 @@ public class JpaMemberRepository implements MemberRepository{
 
     @Override
     public Member save(Member member) {
+        em.persist(member);
+        return member;
+    }
+
+    @Override
+    public MemberForm save(MemberForm member) {
         em.persist(member);
         return member;
     }

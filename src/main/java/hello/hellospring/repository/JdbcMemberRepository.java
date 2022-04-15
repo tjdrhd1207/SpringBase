@@ -1,6 +1,7 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.domain.MemberForm;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
@@ -50,6 +51,12 @@ public class JdbcMemberRepository implements MemberRepository{
         }
 
     }
+
+    @Override
+    public MemberForm save(MemberForm member) {
+        return null;
+    }
+
     private void close(Connection conn, PreparedStatement pstmt, ResultSet rs)
     {
         try {

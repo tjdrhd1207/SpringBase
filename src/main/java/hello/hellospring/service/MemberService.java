@@ -1,6 +1,7 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.domain.MemberForm;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class MemberService {
         });
     }
     /*
-     * 전체 회원 조회
+     * 전체 폼 회원 조회
      * */
     public List<Member> findMembers(){
             return memberRepository.findAll();
@@ -55,4 +56,22 @@ public class MemberService {
     public Optional<Member> findOne(Long memberId){
         return memberRepository.findById(memberId);
     }
+
+    public Long join(MemberForm member){
+
+        //같은 이름이 있는 중복 회원X
+        validateDuplicateMember(member);
+        memberRepository.save(member);
+        return member.getId();
+
+    }
+
+    /*가입된 폼 회원 조회*/
+    private void validateDuplicateMember(MemberForm memberForm) {
+        memberRepository.findByName(memberForm.getName())
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                });
+    }
+
 }

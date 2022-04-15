@@ -1,5 +1,5 @@
 package hello.hellospring.domain;
 
-public class DeliveryStatus {
-    //READY, COMP
+public enum DeliveryStatus {
+    READY, COMP
 }
