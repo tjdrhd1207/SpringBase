@@ -1,9 +1,6 @@
 package hello.hellospring.service;
 
-import hello.hellospring.domain.Delivery;
-import hello.hellospring.domain.Member;
-import hello.hellospring.domain.Order;
-import hello.hellospring.domain.OrderItem;
+import hello.hellospring.domain.*;
 import hello.hellospring.domain.item.Item;
 import hello.hellospring.repository.ItemJpaRepository;
 import hello.hellospring.repository.MemberJpaRepository;
@@ -31,13 +28,14 @@ public class OrderJpaService {
 
 
         //엔티티 조회
-        Member member = memberRepository.findOne(itemId);
+        Member member = memberRepository.findOne(memberId);
         Item item = itemRepository.findOne(itemId);
 
         //배송정보 생성
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
-        
+        delivery.setStatus(DeliveryStatus.READY);
+
         //주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
 
