@@ -50,8 +50,14 @@ public class MemberJpaController {
 
     @GetMapping("/members")
     public String list(Model model){
+
+        /*
         List<Member> members = memberJpaService.findMembers();
         model.addAttribute("members",members);
+        -> 밑에 한줄로 메소드 리팩토리 가능 */
+
+        model.addAttribute("members", memberJpaService.findMembers());
+
 
         return "members/memberList";
     }

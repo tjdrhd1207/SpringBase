@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-public class Member {
+public class Member {       //멤버 객체의 핵심 비즈니스 로직만 들어있어야함, 엔티티는 최대한 순수하게 유지
 
     @Id @GeneratedValue
     @Column(name = "member_id")

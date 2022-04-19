@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
-public class MemberForm {
+public class MemberForm {       //화면을 처리하기 위한 로직이 있는 DTO, FORM 객체
 
     @NotEmpty(message="회원 이름은 필수 이름이다.")
     private String name;
