@@ -3,6 +3,7 @@ package hello.hellospring.controller;
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.MemberForm;
 import hello.hellospring.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
 
 
@@ -28,7 +30,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/members/new")
+   /* @GetMapping("/members/new")
     public String createForm(){
         return "members/createMemberForm";
     }
@@ -52,5 +54,5 @@ public class MemberController {
         model.addAttribute("members",members);
         return "members/memberList";
     }
-
+*/
 }
