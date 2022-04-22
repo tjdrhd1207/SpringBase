@@ -5,6 +5,7 @@ import hello.hellospring.domain.item.Item;
 import hello.hellospring.repository.ItemJpaRepository;
 import hello.hellospring.repository.MemberJpaRepository;
 import hello.hellospring.repository.OrderJpaRepository;
+import hello.hellospring.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,9 +65,9 @@ public class OrderJpaService {
     }
 
     //검색
-    /*
-        public List<Order> findOrders(orderSearch orderSearch){
-            return orderRepository.findAll(orderSearch);
+
+        public List<Order> findOrders(OrderSearch orderSearch){
+            return orderRepository.findAllByCriteria(orderSearch);
         }
-    */
+
 }

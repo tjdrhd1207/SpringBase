@@ -11,6 +11,7 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Order;
 import hello.hellospring.domain.item.Item;
 import hello.hellospring.dto.OrderItemsDTO;
+import hello.hellospring.repository.OrderSearch;
 import hello.hellospring.service.ItemJpaService;
 import hello.hellospring.service.MemberJpaService;
 import hello.hellospring.service.OrderJpaService;
@@ -88,8 +89,23 @@ public class OrderJpaController {
 
         //System.out.println("맵 : "+orderItemJson+",  ");
 
-        return "redirect:/";
+        return "redirect:/orders";
     }
 
+
+    @GetMapping("/orders")
+    public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model){
+        List<Order> orders = orderService.findOrders(orderSearch);   //단순 위임이기 때문에 바로 Repository로 접근해도됨
+        model.addAttribute("orders", orders);
+        return "order/orderList";
+    }
+
+
+    @PostMapping("/orders/{orderId}/cancel")
+    public String cancelOrder(@PathVariable("orderId") Long orderId){
+        orderService.cancelOrder(orderId);
+
+        return "redirect:/orders";
+    }
 
 }
