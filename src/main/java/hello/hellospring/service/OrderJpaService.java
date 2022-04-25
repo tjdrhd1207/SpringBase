@@ -38,7 +38,7 @@ public class OrderJpaService {
         delivery.setStatus(DeliveryStatus.READY);
 
         //주문상품 생성
-        OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
+        OrderItem orderItem = OrderItem. createOrderItem(item, item.getPrice(), count);
 
         //주문 생성
         Order order = Order.createOrder(member, delivery, orderItem);

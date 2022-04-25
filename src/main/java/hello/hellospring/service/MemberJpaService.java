@@ -46,4 +46,11 @@ public class MemberJpaService {
     public Member findOne(Long memberId){
         return memberJpaRepository.findOne(memberId);
     }
+
+
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberJpaRepository.findOne(id);
+        member.setName(name);
+    }
 }
