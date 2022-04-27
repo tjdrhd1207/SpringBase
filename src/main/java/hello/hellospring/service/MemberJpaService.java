@@ -28,7 +28,18 @@ public class MemberJpaService {
         memberJpaRepository.save(member);
         return member.getId();
     }
-    
+
+    /*
+     * 회원 가입
+     * */
+    @Transactional
+    public void saveMembers(List<Member> member){
+
+        //validateDuplicateMember(member);        //중복 회원 검증
+        memberJpaRepository.saveMembers(member);
+
+    }
+
     //회원 전체 조회
     private void validateDuplicateMember(Member member) {
         List<Member> findMembers = memberJpaRepository.findByName(member.getName());

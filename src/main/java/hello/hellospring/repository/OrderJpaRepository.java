@@ -1,5 +1,6 @@
 package hello.hellospring.repository;
 
+//import hello.hellospring.api.OrderSimpleApiController; Repository에서 Controller쪽으로 의존관계 생기면 안됨
 import hello.hellospring.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class OrderJpaRepository {
+public class OrderJpaRepository {       //Repository는 가급적 순수한 Entity를 조회하기 위해서 씀
 
     private final EntityManager em;
 
@@ -74,5 +75,6 @@ public class OrderJpaRepository {
                         " join fetch o.delivery d", Order.class
         ).getResultList();
     }
+
 
 }

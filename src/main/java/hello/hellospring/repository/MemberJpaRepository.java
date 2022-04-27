@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -19,6 +20,14 @@ public class MemberJpaRepository {
 
     public void save(Member member){
         em.persist(member);
+    }
+
+    public void saveMembers(List<Member> memberList){
+        for(Iterator<Member> it = memberList.iterator(); it.hasNext();){
+            Member member = it.next();
+
+            em.persist(member);
+        }
     }
 
     public Member findOne(Long id){
