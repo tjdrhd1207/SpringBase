@@ -9,6 +9,7 @@ import hello.hellospring.repository.order.simplequery.OrderSimpleQueryDto;
 import hello.hellospring.repository.order.simplequery.OrderSimpleQueryRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -85,4 +86,6 @@ public class OrderSimpleApiController {
             address = order.getDelivery().getAddress(); //LAZY 초기화
         }
     }
+
+
 }
