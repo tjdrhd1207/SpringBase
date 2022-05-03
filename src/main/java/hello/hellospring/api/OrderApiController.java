@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 @RestController
 @RequiredArgsConstructor
 public class OrderApiController {
@@ -43,9 +45,24 @@ public class OrderApiController {
         List<Order> orders = orderRepository.findAllByCriteria(new OrderSearch());
         List<OrderDto> collect = orders.stream()
                 .map(o->new OrderDto(o))
+                .collect(toList());
+        System.out.println(collect.toString());
+        return collect;
+    }
+
+    @GetMapping("/api/v3/orders")
+    public List<OrderDto> ordersV3(){
+        List<Order> orders = orderRepository.findAllWithItem();
+
+        for(Order order : orders){
+            System.out.println("order ref = "+ order + "id ="+order.getId());
+        }
+
+        List<OrderDto> result = orders.stream()
+                .map(o -> new OrderDto(o))
                 .collect(Collectors.toList());
 
-        return collect;
+        return result;
     }
 
     @Getter
@@ -56,8 +73,7 @@ public class OrderApiController {
         private LocalDateTime orderDate;
         private OrderStatus orderStatus;
         private Address address;
-        private List<OrderItem> orderItems; //DTO안에 엔티티가 들어가면안됨
-
+        private List<OrderItemDto> orderItems; //DTO안에 엔티티가 들어가면안됨
 
         public OrderDto(Order order) {
             orderId = order.getId();
@@ -65,9 +81,25 @@ public class OrderApiController {
             orderDate = order.getOrderDate();
             orderStatus = order.getStatus();
             address = order.getDelivery().getAddress();
-            order.getOrderItems().stream().forEach(o -> o.getItem().getName());
-            orderItems = order.getOrderItems();
+            orderItems = order.getOrderItems().stream().map(orderItem -> new OrderItemDto(orderItem))
+                    .collect(toList());
         }
     }
+
+    @Getter
+    static class OrderItemDto{
+
+        private String itemName;       //상품 명
+        private int orderPrice;        //주문 가격
+        private int count;             //주문 수량
+
+        public OrderItemDto(OrderItem orderItem) {
+            itemName = orderItem.getItem().getName();
+            orderPrice = orderItem.getOrderPrice();
+            count = orderItem.getCount();
+        }
+    }
+
+
 
 }
