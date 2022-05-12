@@ -77,11 +77,21 @@ public class OrderJpaRepository {       //Repository는 가급적 순수한 Enti
     }
 
 
-    public List<Order> findAllWithItem(){
-        return em.createQuery("select distinct o from Order o"+
-                                         " join fetch o.member m"+
-                                         " join fetch o.delivery d"+
-                                         " join fetch o.orderItems oi"+
+    public List<Order> findAllWithItem(){   //distinct 1대다 fetch 조인에서는 페이징 처리가 불가능함
+        return em.createQuery("select distinct o from Order o" +
+                                         " join fetch o.member m" +
+                                         " join fetch o.delivery d" +
+                                         " join fetch o.orderItems oi" +
                                          " join fetch oi.item i", Order.class).getResultList();
+    }
+
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return  em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
     }
 }

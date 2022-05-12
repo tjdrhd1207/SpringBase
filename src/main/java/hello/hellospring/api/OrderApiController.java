@@ -9,6 +9,7 @@ import hello.hellospring.repository.OrderSearch;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -26,6 +27,7 @@ public class OrderApiController {
     @GetMapping("/api/v1/orders")
     public List<Order> ordersV1(){
         List<Order> all = orderRepository.findAllByCriteria(new OrderSearch());
+        
         for(Order order : all){
            order.getMember().getName();
            order.getDelivery().getAddress();
@@ -34,8 +36,8 @@ public class OrderApiController {
            for(OrderItem orderItem : orderItems){
                orderItem.getItem().getName();
            }
-           */
-            orderItems.stream().forEach(o -> o.getItem().getName());    //프록시 강제 초기화
+           --> 밑에 람다로 변환 */
+            orderItems.stream().forEach(o -> o.getItem().getName());    //프록시 강제 초기화 ( 주문과 관련된 orderItems를 다 가져온 후 돌리면서 아이템명을 가져오면서 초기화)
         }
         return all;
     }
@@ -65,6 +67,18 @@ public class OrderApiController {
         return result;
     }
 
+    @GetMapping("/api/v3.1/orders")
+    public List<OrderDto> ordersV3_page(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                                        @RequestParam(value = "limit", defaultValue = "100") int limit){
+        List<Order> orders = orderRepository.findAllWithMemberDelivery(offset, limit);
+
+        List<OrderDto> result = orders.stream()
+                .map(o -> new OrderDto(o))
+                .collect(Collectors.toList());
+
+        return result;
+    }
+
     @Getter
     static class OrderDto{
 
@@ -81,7 +95,7 @@ public class OrderApiController {
             orderDate = order.getOrderDate();
             orderStatus = order.getStatus();
             address = order.getDelivery().getAddress();
-            orderItems = order.getOrderItems().stream().map(orderItem -> new OrderItemDto(orderItem))
+            orderItems = order.getOrderItems().stream().map(OrderItemDto::new)
                     .collect(toList());
         }
     }

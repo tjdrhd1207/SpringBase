@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)   //상속관계 매핑
 @DiscriminatorColumn(name = "dtype")                    //부모클래스에 선언. 하위 클래스를 구분하는 용도의 컬럼. 관례는 default = dtype

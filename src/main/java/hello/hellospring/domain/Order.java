@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.aspectj.weaver.ast.Or;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class Order {
     @ManyToOne(fetch = LAZY)  //ManyToOne 또는 OnetoOne 같은 한개로 가는 것은 FetchType.LAZY로 설정해줘야함(실무에서)
     @JoinColumn(name = "member_id")
     private Member member;
+
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
